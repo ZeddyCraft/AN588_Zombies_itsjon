@@ -586,7 +586,7 @@ sample_stats</code></pre>
 <pre><code>## # A tibble: 1 × 25
 ##   mean_height sd_height se_height mean_weight sd_weight se_weight mean_age
 ##         &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1        67.5      3.69     0.674        140.      17.4      3.17     20.4
+## 1        67.3      4.94     0.902        139.      19.9      3.63     20.4
 ## # ℹ 18 more variables: sd_age &lt;dbl&gt;, se_age &lt;dbl&gt;, mean_zombies_killed &lt;dbl&gt;,
 ## #   sd_zombies_killed &lt;dbl&gt;, se_zombies_killed &lt;dbl&gt;, mean_education &lt;dbl&gt;,
 ## #   sd_education &lt;dbl&gt;, se_education &lt;dbl&gt;, ci_low_height &lt;dbl&gt;,
@@ -629,23 +629,23 @@ for (i in 1:num_samples) {
 # Check the first few rows of the sampling distribution
 print(head(sampling_dist))</code></pre>
 <pre><code>##   height_mean weight_mean age_mean zombies_killed_mean years_of_education_mean
-## 1    67.85738    143.8659 20.36424            2.733333                2.800000
-## 2    68.85664    149.9294 19.93893            2.566667                3.100000
-## 3    66.29767    139.0752 19.03769            2.333333                3.366667
-## 4    67.97020    148.1461 19.65169            3.000000                3.266667
-## 5    67.65249    143.4246 20.17938            2.500000                2.833333
-## 6    67.44880    145.4923 19.92250            2.933333                3.433333</code></pre>
+## 1    66.34684    137.3959 19.66633            3.000000                2.900000
+## 2    66.75972    141.8122 19.26801            2.833333                2.833333
+## 3    68.94534    147.7471 21.02621            3.166667                2.800000
+## 4    65.23161    135.0162 19.30442            2.733333                3.000000
+## 5    67.60976    140.7104 20.40562            3.166667                3.133333
+## 6    66.00078    137.6421 19.82675            3.066667                3.100000</code></pre>
 <pre class="r"><code># Compute mean and standard deviation of the sampling distribution
 sampling_summary &lt;- sampling_dist %&gt;%
   summarise(across(everything(), list(mean = mean, sd = sd), .names = &quot;{.col}_{.fn}&quot;))
 
 print(sampling_summary)  # Check structure</code></pre>
 <pre><code>##   height_mean_mean height_mean_sd weight_mean_mean weight_mean_sd age_mean_mean
-## 1          67.7024        0.77315         144.0647       2.920194      20.14739
+## 1         67.60565      0.8732376         144.1029       3.505286      20.00818
 ##   age_mean_sd zombies_killed_mean_mean zombies_killed_mean_sd
-## 1   0.5931383                    2.991               0.298964
+## 1   0.5669258                 3.033333              0.3106418
 ##   years_of_education_mean_mean years_of_education_mean_sd
-## 1                     3.051667                  0.2962305</code></pre>
+## 1                        2.975                    0.29026</code></pre>
 <pre class="r"><code># Ensure sample_stats is correctly structured
 sample_stats &lt;- sample_30 %&gt;%
   summarise(across(all_of(quant_vars), list(
@@ -658,7 +658,7 @@ print(sample_stats)  # Debugging check</code></pre>
 <pre><code>## # A tibble: 1 × 15
 ##   height_mean height_sd height_se weight_mean weight_sd weight_se age_mean
 ##         &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1        67.5      3.69     0.674        140.      17.4      3.17     20.4
+## 1        67.3      4.94     0.902        139.      19.9      3.63     20.4
 ## # ℹ 8 more variables: age_sd &lt;dbl&gt;, age_se &lt;dbl&gt;, zombies_killed_mean &lt;dbl&gt;,
 ## #   zombies_killed_sd &lt;dbl&gt;, zombies_killed_se &lt;dbl&gt;,
 ## #   years_of_education_mean &lt;dbl&gt;, years_of_education_sd &lt;dbl&gt;,
@@ -671,11 +671,11 @@ comparison &lt;- data.frame(
 )
 comparison</code></pre>
 <pre><code>##             variable estimated_se sd_of_means
-## 1             height    0.6741670   0.7731500
-## 2             weight    3.1689991   2.9201944
-## 3                age    0.4529558   0.5931383
-## 4     zombies_killed    0.3073181   0.2989640
-## 5 years_of_education    0.3571385   0.2962305</code></pre>
+## 1             height    0.9017288   0.8732376
+## 2             weight    3.6258251   3.5052860
+## 3                age    0.5356872   0.5669258
+## 4     zombies_killed    0.3857619   0.3106418
+## 5 years_of_education    0.3254823   0.2902600</code></pre>
 </div>
 
 
